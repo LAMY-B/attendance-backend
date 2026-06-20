@@ -1,36 +1,32 @@
-const mongoose =
-  require("mongoose")
+const mongoose = require("mongoose")
 
-const studentSchema =
-  new mongoose.Schema({
+const studentSchema = new mongoose.Schema({
+  studentId: {
+    type: String,
+    required: true,
+    unique: true,
+  },
 
-    studentId: {
-      type: String,
-      required: true,
-      unique: true,
-    },
+  name: {
+    type: String,
+    required: true,
+  },
 
-    name: {
-      type: String,
-      required: true,
-    },
+  present: {
+    type: Number,
+    default: 0,
+  },
 
-    present: {
-      type: Number,
-      default: 0,
-    },
+  absent: {
+    type: Number,
+    default: 0,
+  },
 
-    absent: {
-      type: Number,
-      default: 0,
-    },
-
-    vacation: {
-      type: Number,
-      default: 0,
-    },
-
-  })
+  vacation: {
+    type: Number,
+    default: 0,
+  },
+})
 
 module.exports =
   mongoose.model(

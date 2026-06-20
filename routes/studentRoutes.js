@@ -4,6 +4,7 @@ const router = express.Router()
 const Student =
   require("../models/Student")
 
+// GET ALL
 router.get("/", async (req, res) => {
 
   try {
@@ -23,6 +24,7 @@ router.get("/", async (req, res) => {
 
 })
 
+// ADD
 router.post("/", async (req, res) => {
 
   try {
@@ -44,6 +46,33 @@ router.post("/", async (req, res) => {
 
 })
 
+// UPDATE
+router.put("/:id", async (req, res) => {
+
+  try {
+
+    const updatedStudent =
+      await Student.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {
+          new: true,
+        }
+      )
+
+    res.json(updatedStudent)
+
+  } catch (error) {
+
+    res.status(500).json({
+      message: error.message,
+    })
+
+  }
+
+})
+
+// DELETE
 router.delete("/:id", async (req, res) => {
 
   try {
@@ -54,7 +83,7 @@ router.delete("/:id", async (req, res) => {
 
     res.json({
       message:
-        "Student deleted",
+        "Student Deleted",
     })
 
   } catch (error) {
